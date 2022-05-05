@@ -7,12 +7,13 @@
     <img {src} alt="Sagoverse banner" />
   </div>
   <buttonContainer>
-    <a href="https://testflight.apple.com/join/0jOyrOUT" class="button"
-      >Download test version for iOS</a
+    <button
+      onclick="window.location.href='https://testflight.apple.com/join/0jOyrOUT'"
+      >Download test version for iOS</button
     >
-    <a
-      href="https://play.google.com/store/apps/details?id=com.sagoverse"
-      class="button">Download test version for Android</a
+    <button
+      onclick="window.location.href='https://play.google.com/store/apps/details?id=com.sagoverse'"
+      >Download test version for Android</button
     >
   </buttonContainer>
 </container>
@@ -27,7 +28,7 @@
     background-color: #009d9d;
     overflow: hidden;
   }
-  a.button {
+  button {
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
@@ -36,7 +37,7 @@
     color: initial;
     background-color: rgba(192, 228, 217, 0.8);
     text-align: center;
-    font-weight: 200;
+    font-weight: 400;
   }
   buttonContainer {
     position: absolute;
