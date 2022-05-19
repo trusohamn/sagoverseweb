@@ -1,0 +1,38 @@
+<container>
+  <button onclick="window.location.href='https://www.facebook.com/sagoverse'">
+    <img src="/assets/facebook.svg" alt="facebook" />
+  </button>
+  <button onclick="window.location.href='https://www.instagram.com/sagoverse/'">
+    <img src="/assets/instagram.svg" alt="instagram" /></button
+  >
+</container>
+
+<style>
+  container {
+    margin-top: -20px;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #006161;
+    overflow: hidden;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+    border-radius: 20px 20px 0 0;
+  }
+  img {
+    height: 30px;
+    width: 30px;
+  }
+  button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+    background-color: rgba(192, 228, 217, 0.8);
+    text-align: center;
+    font-weight: 400;
+  }
+</style>
