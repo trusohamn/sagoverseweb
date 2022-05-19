@@ -1,4 +1,4 @@
-<main>
+<div class="paper">
   <h1>Terms and conditions</h1>
   <p>
     We would like to point out that the exercise and play ideas presented should
@@ -12,26 +12,13 @@
     attending physician in advance. If you feel uncomfortable during the
     implementation, it is important to cancel the implementation.
   </p>
-</main>
+</div>
 
 <style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
   h1 {
     color: #ff3e00;
     text-transform: uppercase;
     font-size: 3em;
     font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
   }
 </style>

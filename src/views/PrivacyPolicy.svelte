@@ -1,4 +1,4 @@
-<main>
+<div class="paper">
   <h1>Privacy Policy for Sagoverse App</h1>
   <span class="document-previewer-logo-d16635" />
   <div data-custom-class="body">
@@ -6228,16 +6228,9 @@
       </div>
     </div>
   </div>
-</main>
+</div>
 
 <style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
   h1 {
     color: #ff3e00;
     text-transform: uppercase;
@@ -6274,10 +6267,5 @@
     font-size: 14px !important;
     font-family: Arial !important;
     word-break: break-word !important;
-  }
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
   }
 </style>
