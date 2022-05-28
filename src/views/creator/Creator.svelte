@@ -1,6 +1,7 @@
 <script>
   import L from "leaflet";
-  let map;
+  /*   import GeometryUtil from "leaflet-geometryutil";
+   */ let map;
   let places = [
     { location: [29.8283, -96.5795], name: "first" },
     { location: [37.8283, -90.5795], name: "second" },
@@ -38,7 +39,10 @@
       draggable: true,
       name: place.name,
     });
-    marker.on("dragend", function (event) {
+
+    marker.bindPopup("<p>Can you see me?</p>");
+
+    marker.on("drag", function (event) {
       const location = event.target.getLatLng();
       const name = event.target.options.name;
       places = places.map((place) => {
@@ -55,13 +59,18 @@
   }
 
   function createLines() {
-    return L.polyline(
+    const line = L.polyline(
       places.map((place) => place.location),
       {
         color: "#E4E",
         opacity: 0.5,
       }
     );
+    /*     line.on("click", function (event) {
+      const closest = GeometryUtil.closest(map, line, event.latlng);
+      console.log(closest);
+    }); */
+    return line;
   }
 
   let markerLayers, lineLayers;
