@@ -1,5 +1,6 @@
 <script>
   import L from "leaflet";
+  import { midpoint, point, lineString, along } from "turf";
   /*   import GeometryUtil from "leaflet-geometryutil";
    */ let map;
   let places = [
@@ -32,6 +33,14 @@
     });
   }
 
+  function middleIcon() {
+    let html = `<div class="map-middle-marker"></div>`;
+    return L.divIcon({
+      html,
+      className: "map-middle-marker",
+    });
+  }
+
   function createMarker(place) {
     const icon = markerIcon(place.name);
     const marker = L.marker(place.location, {
@@ -56,6 +65,13 @@
       lineLayers.addTo(map);
     });
     return marker;
+  }
+
+  function calcMiddleLatLng(map, latlng1, latlng2) {
+    // calculate the middle coordinates between two markers
+    const p1 = map.project(latlng1);
+    const p2 = map.project(latlng2);
+    return map.unproject(p1._add(p2)._divideBy(2));
   }
 
   function createLines() {
@@ -86,6 +102,21 @@
     lineLayers = createLines();
     lineLayers.addTo(map);
     markerLayers.addTo(map);
+
+    for (let i = 0; i < places.length - 1; i++) {
+      const middle = calcMiddleLatLng(
+        map,
+        places[i].location,
+        places[i + 1].location
+      );
+
+      const midmarker = L.marker(middle, {
+        icon: middleIcon(),
+        draggable: true,
+      });
+
+      midmarker.addTo(map);
+    }
 
     return {
       destroy: () => {
@@ -129,5 +160,13 @@
   .map :global(.map-marker) {
     width: 60px;
     transform: translateX(-50%) translateY(-25%);
+  }
+
+  .map :global(.map-middle-marker) {
+    width: 60px;
+    transform: translateX(-50%) translateY(-25%);
+    background-color: rgb(244, 6, 212);
+    color: #eee;
+    border-radius: 0.5rem;
   }
 </style>
