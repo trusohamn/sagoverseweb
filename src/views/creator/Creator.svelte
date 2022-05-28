@@ -1,8 +1,7 @@
 <script>
   import L from "leaflet";
   let map;
-
-  const places = [
+  let places = [
     { location: [29.8283, -96.5795], name: "first" },
     { location: [37.8283, -90.5795], name: "second" },
     { location: [43.8283, -102.5795], name: "third" },
@@ -34,10 +33,23 @@
 
   function createMarker(place) {
     const icon = markerIcon(place.name);
-    const marker = L.marker(place.location, { icon, draggable: true });
+    const marker = L.marker(place.location, {
+      icon,
+      draggable: true,
+      name: place.name,
+    });
     marker.on("dragend", function (event) {
-      const position = event.target.getLatLng();
-      console.log(position);
+      const location = event.target.getLatLng();
+      const name = event.target.options.name;
+      places = places.map((place) => {
+        if (place.name === name) {
+          return { ...place, location };
+        }
+        return place;
+      });
+      lineLayers.remove();
+      lineLayers = createLines();
+      lineLayers.addTo(map);
     });
     return marker;
   }
