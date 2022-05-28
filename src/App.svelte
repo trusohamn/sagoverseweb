@@ -4,6 +4,7 @@
   import PrivacyPolicy from "./views/PrivacyPolicy.svelte";
   import Terms from "./views/Terms.svelte";
   import Creator from "./views/creator/Creator.svelte";
+  import NotFound from "./views/NotFound.svelte";
   import Footer from "./components/Footer.svelte";
 </script>
 
@@ -26,8 +27,7 @@
     </Route>
 
     <Route>
-      <h3>Not found</h3>
-      <p>Page not found</p>
+      <NotFound />
     </Route>
     <Footer />
   </main>
