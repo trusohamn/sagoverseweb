@@ -1,13 +1,12 @@
 <script>
   import L from "leaflet";
-  import { midpoint, point, lineString, along } from "turf";
-  /*   import GeometryUtil from "leaflet-geometryutil";
-   */ let map;
+  let map;
   let places = [
     { location: [29.8283, -96.5795], name: "first" },
     { location: [37.8283, -90.5795], name: "second" },
     { location: [43.8283, -102.5795], name: "third" },
   ];
+  let count = 0;
 
   const initialView = [39.8283, -98.5795];
   function createMap(container) {
@@ -53,16 +52,40 @@
 
     marker.on("drag", function (event) {
       const location = event.target.getLatLng();
-      const name = event.target.options.name;
+      const { name } = event.target.options;
+
       places = places.map((place) => {
-        if (place.name === name) {
+        if (name && place.name === name) {
           return { ...place, location };
         }
         return place;
       });
-      lineLayers.remove();
-      lineLayers = createLines();
-      lineLayers.addTo(map);
+
+      cleanUp();
+    });
+    return marker;
+  }
+
+  function createVertexMarker(place) {
+    const icon = middleIcon();
+    const marker = L.marker(place.location, {
+      icon,
+      draggable: true,
+      id: place.id,
+    });
+
+    marker.on("drag", function (event) {
+      const location = event.target.getLatLng();
+      const { id } = event.target.options;
+
+      places = places.map((place) => {
+        if (id && place.id === id) {
+          return { ...place, location };
+        }
+        return place;
+      });
+
+      cleanUp();
     });
     return marker;
   }
@@ -74,35 +97,39 @@
     return map.unproject(p1._add(p2)._divideBy(2));
   }
 
+  let markerLayers, lineLayers, midMarkersLayers, vertexLayers;
   function createLines() {
-    const line = L.polyline(
+    lineLayers = L.polyline(
       places.map((place) => place.location),
       {
         color: "#E4E",
         opacity: 0.5,
       }
     );
-    /*     line.on("click", function (event) {
-      const closest = GeometryUtil.closest(map, line, event.latlng);
-      console.log(closest);
-    }); */
-    return line;
   }
 
-  let markerLayers, lineLayers;
-  function mapAction(container) {
-    map = createMap(container);
-
+  function createMarkers() {
     markerLayers = L.layerGroup();
     for (let place of places) {
-      let m = createMarker(place);
-      markerLayers.addLayer(m);
+      if (place.name) {
+        let m = createMarker(place);
+        markerLayers.addLayer(m);
+      }
     }
+  }
 
-    lineLayers = createLines();
-    lineLayers.addTo(map);
-    markerLayers.addTo(map);
+  function createVertex() {
+    vertexLayers = L.layerGroup();
+    for (let place of places) {
+      if (place.id) {
+        let m = createVertexMarker(place);
+        vertexLayers.addLayer(m);
+      }
+    }
+  }
 
+  function createMidMarkers() {
+    midMarkersLayers = L.layerGroup();
     for (let i = 0; i < places.length - 1; i++) {
       const middle = calcMiddleLatLng(
         map,
@@ -113,11 +140,53 @@
       const midmarker = L.marker(middle, {
         icon: middleIcon(),
         draggable: true,
+        after: i,
       });
 
-      midmarker.addTo(map);
-    }
+      midmarker.on("dragend", function (event) {
+        const latLng = event.target.getLatLng();
+        places.splice(event.target.options.after + 1, 0, {
+          location: [latLng.lat, latLng.lng],
+          id: Date.now(),
+        });
 
+        places = places;
+
+        cleanUp();
+      });
+
+      midMarkersLayers.addLayer(midmarker);
+    }
+  }
+
+  function cleanUp() {
+    midMarkersLayers.remove();
+    lineLayers.remove();
+    midMarkersLayers.remove();
+    vertexLayers.remove();
+
+    createMidMarkers();
+    createLines();
+    createMarkers();
+    createVertex();
+
+    midMarkersLayers.addTo(map);
+    lineLayers.addTo(map);
+    midMarkersLayers.addTo(map);
+    vertexLayers.addTo(map);
+  }
+  function mapAction(container) {
+    map = createMap(container);
+
+    createLines();
+    createMarkers();
+    createMidMarkers();
+    createVertex();
+
+    lineLayers.addTo(map);
+    markerLayers.addTo(map);
+    midMarkersLayers.addTo(map);
+    vertexLayers.addTo(map);
     return {
       destroy: () => {
         map.remove();
@@ -130,10 +199,6 @@
     if (map) {
       map.invalidateSize();
     }
-  }
-
-  $: if (lineLayers && map) {
-    console.log("something happens");
   }
 </script>
 
