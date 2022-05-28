@@ -2,10 +2,10 @@
   import L from "leaflet";
   let map;
 
-  const markerLocations = [
-    [29.8283, -96.5795],
-    [37.8283, -90.5795],
-    [43.8283, -102.5795],
+  const places = [
+    { location: [29.8283, -96.5795], name: "first" },
+    { location: [37.8283, -90.5795], name: "second" },
+    { location: [43.8283, -102.5795], name: "third" },
   ];
 
   const initialView = [39.8283, -98.5795];
@@ -14,9 +14,7 @@
     L.tileLayer(
       "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
       {
-        attribution: `&copyimport { loop_guard } from "svelte/internal";
-import { loop_guard } from "svelte/internal";
-;<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
+        attribution: `&copy<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
 	        &copy;<a href="https://carto.com/attributions" target="_blank">CARTO</a>`,
         subdomains: "abcd",
         maxZoom: 14,
@@ -34,15 +32,24 @@ import { loop_guard } from "svelte/internal";
     });
   }
 
-  function createMarker(loc) {
-    let icon = markerIcon(0);
-    let marker = L.marker(loc, { icon, draggable: true });
-
+  function createMarker(place) {
+    const icon = markerIcon(place.name);
+    const marker = L.marker(place.location, { icon, draggable: true });
+    marker.on("dragend", function (event) {
+      const position = event.target.getLatLng();
+      console.log(position);
+    });
     return marker;
   }
 
   function createLines() {
-    return L.polyline(markerLocations, { color: "#E4E", opacity: 0.5 });
+    return L.polyline(
+      places.map((place) => place.location),
+      {
+        color: "#E4E",
+        opacity: 0.5,
+      }
+    );
   }
 
   let markerLayers, lineLayers;
@@ -50,8 +57,8 @@ import { loop_guard } from "svelte/internal";
     map = createMap(container);
 
     markerLayers = L.layerGroup();
-    for (let location of markerLocations) {
-      let m = createMarker(location);
+    for (let place of places) {
+      let m = createMarker(place);
       markerLayers.addLayer(m);
     }
 
@@ -74,9 +81,7 @@ import { loop_guard } from "svelte/internal";
   }
 
   $: if (lineLayers && map) {
-    console.log("will add line");
-
-    lineLayers.addTo(map);
+    console.log("something happens");
   }
 </script>
 
@@ -101,7 +106,7 @@ import { loop_guard } from "svelte/internal";
   }
 
   .map :global(.map-marker) {
-    width: 30px;
+    width: 60px;
     transform: translateX(-50%) translateY(-25%);
   }
 </style>
