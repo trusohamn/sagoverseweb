@@ -74,7 +74,7 @@
       id: place.id,
     });
 
-    marker.on("drag", function (event) {
+    marker.on("dragend", function (event) {
       const location = event.target.getLatLng();
       const { id } = event.target.options;
 
