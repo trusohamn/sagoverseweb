@@ -33,7 +33,7 @@
   }
 
   function middleIcon() {
-    let html = `<div class="map-middle-marker"></div>`;
+    const html = `<div class="map-middle-marker"><div class="map-middle-icon"></div></div>`;
     return L.divIcon({
       html,
       className: "map-middle-marker",
@@ -227,11 +227,12 @@
     transform: translateX(-50%) translateY(-25%);
   }
 
-  .map :global(.map-middle-marker) {
-    width: 60px;
-    transform: translateX(-50%) translateY(-25%);
+  .map :global(.map-middle-icon) {
+    padding: 15px;
     background-color: rgb(244, 6, 212);
     color: #eee;
-    border-radius: 0.5rem;
+    border-radius: 15px;
+    transform: translateX(-25%) translateY(-25%);
+    box-shadow: inset 0px 0px 20px -10px #000000;
   }
 </style>
