@@ -40,6 +40,14 @@
     });
   }
 
+  function vertexIcon() {
+    const html = `<div class="map-middle-marker"><div class="map-vertex-icon"></div></div>`;
+    return L.divIcon({
+      html,
+      className: "map-middle-marker",
+    });
+  }
+
   function createMarker(place) {
     const icon = markerIcon(place.name);
     const marker = L.marker(place.location, {
@@ -67,7 +75,7 @@
   }
 
   function createVertexMarker(place) {
-    const icon = middleIcon();
+    const icon = vertexIcon();
     const marker = L.marker(place.location, {
       icon,
       draggable: true,
@@ -87,6 +95,18 @@
 
       cleanUp();
     });
+    marker.on("dblclick", function (event) {
+      const { id } = event.target.options;
+
+      places = places.reduce((acc, place) => {
+        if (place.id !== id) {
+          acc.push(place);
+        }
+        return acc;
+      }, []);
+      cleanUp();
+    });
+
     return marker;
   }
 
@@ -230,7 +250,14 @@
   .map :global(.map-middle-icon) {
     padding: 15px;
     background-color: rgb(244, 6, 212);
-    color: #eee;
+    border-radius: 15px;
+    transform: translateX(-25%) translateY(-25%);
+    box-shadow: inset 0px 0px 20px -10px #000000;
+  }
+
+  .map :global(.map-vertex-icon) {
+    padding: 15px;
+    background-color: rgb(142, 85, 128);
     border-radius: 15px;
     transform: translateX(-25%) translateY(-25%);
     box-shadow: inset 0px 0px 20px -10px #000000;
