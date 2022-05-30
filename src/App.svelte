@@ -3,7 +3,7 @@
   import Home from "./views/Home.svelte";
   import PrivacyPolicy from "./views/PrivacyPolicy.svelte";
   import Terms from "./views/Terms.svelte";
-  import Creator from "./views/creator/Creator.svelte";
+  import Creator from "./views/Creator.svelte";
   import NotFound from "./views/NotFound.svelte";
   import Footer from "./components/Footer.svelte";
 </script>
