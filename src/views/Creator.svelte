@@ -1,95 +1,100 @@
 <script>
   import L from "leaflet";
   let map;
-  const initialView = [52.96688964866622, 18.3231];
+  const initialView = { lat: 52.968459819373585, lng: 18.321627974510196 };
   const zoom = 16;
-  let places = [
-    {
-      value: "intro1",
-      name: "Intro",
-      location: { lat: initialView[0], lng: initialView[1] },
-    },
-    {
-      value: "drake2",
-      name: "Dragon",
-      location: {
-        lat: initialView[0] + 0.0007495536,
-        lng: initialView[1] - 0.0031189018,
+
+  let places = [];
+  function updatePlaces({ lat, lng }) {
+    places = [
+      {
+        value: "intro1",
+        name: "Intro",
+        location: { lat: lat, lng: lng },
       },
-    },
-    {
-      value: "troll3a",
-      name: "Troll",
-      location: {
-        lat: initialView[0] + 0.001848,
-        lng: initialView[1] - 0.004985,
+      {
+        value: "drake2",
+        name: "Dragon",
+        location: {
+          lat: lat + 0.0007495,
+          lng: lng - 0.0031189,
+        },
       },
-    },
-    {
-      value: "hyllemor4",
-      name: "Hyllemor",
-      location: {
-        lat: initialView[0] + 0.003398,
-        lng: initialView[1] - 0.004985,
+      {
+        value: "troll3a",
+        name: "Troll",
+        location: {
+          lat: lat + 0.001848,
+          lng: lng - 0.004985,
+        },
       },
-    },
-    {
-      value: "prasslar5",
-      name: "Prasslar",
-      location: {
-        lat: initialView[0] + 0.004807,
-        lng: initialView[1] - 0.004899,
+      {
+        value: "hyllemor4",
+        name: "Hyllemor",
+        location: {
+          lat: lat + 0.003398,
+          lng: lng - 0.004985,
+        },
       },
-    },
-    {
-      value: "jerff6",
-      name: "Jerff",
-      location: {
-        lat: initialView[0] + 0.005685,
-        lng: initialView[1] - 0.002131,
+      {
+        value: "prasslar5",
+        name: "Prasslar",
+        location: {
+          lat: lat + 0.004807,
+          lng: lng - 0.004899,
+        },
       },
-    },
-    {
-      value: "alv7",
-      name: "Elves",
-      location: {
-        lat: initialView[0] + 0.005815,
-        lng: initialView[1] + 0.001344,
+      {
+        value: "jerff6",
+        name: "Jerff",
+        location: {
+          lat: lat + 0.005685,
+          lng: lng - 0.002131,
+        },
       },
-    },
-    {
-      value: "kor8",
-      name: "Cow",
-      location: {
-        lat: initialView[0] + 0.004807,
-        lng: initialView[1] + 0.004434,
+      {
+        value: "alv7",
+        name: "Elves",
+        location: {
+          lat: lat + 0.005815,
+          lng: lng + 0.001344,
+        },
       },
-    },
-    {
-      value: "vittror9",
-      name: "Vittror",
-      location: {
-        lat: initialView[0] + 0.00314,
-        lng: initialView[1] + 0.00567,
+      {
+        value: "kor8",
+        name: "Cow",
+        location: {
+          lat: lat + 0.004807,
+          lng: lng + 0.004434,
+        },
       },
-    },
-    {
-      value: "haren10",
-      name: "Hare",
-      location: {
-        lat: initialView[0] + 0.00116,
-        lng: initialView[1] + 0.00434,
+      {
+        value: "vittror9",
+        name: "Vittror",
+        location: {
+          lat: lat + 0.00314,
+          lng: lng + 0.00567,
+        },
       },
-    },
-    {
-      value: "mamma11",
-      name: "Mamma Dragon",
-      location: {
-        lat: initialView[0] + 0.00021,
-        lng: initialView[1] + 0.00158,
+      {
+        value: "haren10",
+        name: "Hare",
+        location: {
+          lat: lat + 0.00116,
+          lng: lng + 0.00434,
+        },
       },
-    },
-  ];
+      {
+        value: "mamma11",
+        name: "Mamma Dragon",
+        location: {
+          lat: lat + 0.00021,
+          lng: lng + 0.00158,
+        },
+      },
+    ];
+  }
+
   function createMap(container) {
     let m = L.map(container, { preferCanvas: true }).setView(initialView, zoom);
     L.tileLayer(
@@ -172,8 +177,9 @@
         }
         return place;
       });
-
+      vertexLayers.remove();
       cleanUp();
+      vertexLayers.addTo(map);
     });
     marker.on("dblclick", function (event) {
       const { id } = event.target.options;
@@ -184,7 +190,9 @@
         }
         return acc;
       }, []);
+      vertexLayers.remove();
       cleanUp();
+      vertexLayers.addTo(map);
     });
 
     return marker;
@@ -252,7 +260,9 @@
 
         places = places;
 
+        vertexLayers.remove();
         cleanUp();
+        vertexLayers.addTo(map);
       });
 
       midMarkersLayers.addLayer(midmarker);
@@ -262,8 +272,6 @@
   function cleanUp() {
     midMarkersLayers.remove();
     lineLayers.remove();
-    midMarkersLayers.remove();
-    vertexLayers.remove();
 
     createMidMarkers();
     createLines();
@@ -272,27 +280,17 @@
 
     midMarkersLayers.addTo(map);
     lineLayers.addTo(map);
-    midMarkersLayers.addTo(map);
-    vertexLayers.addTo(map);
   }
-  function mapAction(container) {
-    map = createMap(container);
-
+  function addAllMarkers() {
+    createMidMarkers();
     createLines();
     createMarkers();
-    createMidMarkers();
     createVertex();
 
+    midMarkersLayers.addTo(map);
     lineLayers.addTo(map);
     markerLayers.addTo(map);
-    midMarkersLayers.addTo(map);
     vertexLayers.addTo(map);
-    return {
-      destroy: () => {
-        map.remove();
-        map = null;
-      },
-    };
   }
 
   function resizeMap() {
@@ -301,6 +299,24 @@
     }
   }
 
+  function initMapAction(container) {
+    map = createMap(container);
+
+    function getStigLocation(event) {
+      if (!places.length) {
+        updatePlaces(event.latlng);
+        addAllMarkers();
+      }
+    }
+
+    map.on("dblclick", getStigLocation);
+    return {
+      destroy: () => {
+        map.remove();
+        map = null;
+      },
+    };
+  }
   $: console.log(JSON.stringify(places));
 </script>
 
@@ -312,7 +328,7 @@
   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
   crossorigin=""
 />
-<div class="map" style="height:100%;width:100%" use:mapAction />
+<div class="map" style="height:100%;width:100%" use:initMapAction />
 
 <style>
   .map :global(.marker-text) {
