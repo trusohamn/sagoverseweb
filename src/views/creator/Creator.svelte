@@ -1,23 +1,103 @@
 <script>
   import L from "leaflet";
   let map;
+  const initialView = [52.96688964866622, 18.3231];
+  const zoom = 16;
   let places = [
-    { location: [29.8283, -96.5795], name: "first" },
-    { location: [37.8283, -90.5795], name: "second" },
-    { location: [43.8283, -102.5795], name: "third" },
+    {
+      value: "intro1",
+      name: "Intro",
+      location: { lat: initialView[0], lng: initialView[1] },
+    },
+    {
+      value: "drake2",
+      name: "Dragon",
+      location: {
+        lat: initialView[0] + 0.0007495536,
+        lng: initialView[1] - 0.0031189018,
+      },
+    },
+    {
+      value: "troll3a",
+      name: "Troll",
+      location: {
+        lat: initialView[0] + 0.001848,
+        lng: initialView[1] - 0.004985,
+      },
+    },
+    {
+      value: "hyllemor4",
+      name: "Hyllemor",
+      location: {
+        lat: initialView[0] + 0.003398,
+        lng: initialView[1] - 0.004985,
+      },
+    },
+    {
+      value: "prasslar5",
+      name: "Prasslar",
+      location: {
+        lat: initialView[0] + 0.004807,
+        lng: initialView[1] - 0.004899,
+      },
+    },
+    {
+      value: "jerff6",
+      name: "Jerff",
+      location: {
+        lat: initialView[0] + 0.005685,
+        lng: initialView[1] - 0.002131,
+      },
+    },
+    {
+      value: "alv7",
+      name: "Elves",
+      location: {
+        lat: initialView[0] + 0.005815,
+        lng: initialView[1] + 0.001344,
+      },
+    },
+    {
+      value: "kor8",
+      name: "Cow",
+      location: {
+        lat: initialView[0] + 0.004807,
+        lng: initialView[1] + 0.004434,
+      },
+    },
+    {
+      value: "vittror9",
+      name: "Vittror",
+      location: {
+        lat: initialView[0] + 0.00314,
+        lng: initialView[1] + 0.00567,
+      },
+    },
+    {
+      value: "haren10",
+      name: "Hare",
+      location: {
+        lat: initialView[0] + 0.00116,
+        lng: initialView[1] + 0.00434,
+      },
+    },
+    {
+      value: "mamma11",
+      name: "Mamma Dragon",
+      location: {
+        lat: initialView[0] + 0.00021,
+        lng: initialView[1] + 0.00158,
+      },
+    },
   ];
-  let count = 0;
-
-  const initialView = [39.8283, -98.5795];
   function createMap(container) {
-    let m = L.map(container, { preferCanvas: true }).setView(initialView, 5);
+    let m = L.map(container, { preferCanvas: true }).setView(initialView, zoom);
     L.tileLayer(
       "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
       {
         attribution: `&copy<a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a>,
 	        &copy;<a href="https://carto.com/attributions" target="_blank">CARTO</a>`,
         subdomains: "abcd",
-        maxZoom: 14,
       }
     ).addTo(m);
 
@@ -220,6 +300,8 @@
       map.invalidateSize();
     }
   }
+
+  $: console.log(JSON.stringify(places));
 </script>
 
 <svelte:window on:resize={resizeMap} />
@@ -248,11 +330,10 @@
   }
 
   .map :global(.map-middle-icon) {
-    padding: 15px;
-    background-color: rgb(244, 6, 212);
+    padding: 12px;
     border-radius: 15px;
+    border: 3px solid rgba(244, 6, 212, 0.5);
     transform: translateX(-25%) translateY(-25%);
-    box-shadow: inset 0px 0px 20px -10px #000000;
   }
 
   .map :global(.map-vertex-icon) {
