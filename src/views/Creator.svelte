@@ -4,9 +4,14 @@
   let initialView = { lat: 52.968459819373585, lng: 18.321627974510196 };
   let initialZoom = 4;
   let showFirstInstruction = true;
+  let showSecondInstruction = false;
 
   function hideFirstInstruction() {
     showFirstInstruction = false;
+  }
+
+  function hideSecondInstruction() {
+    showSecondInstruction = false;
   }
 
   let places = [];
@@ -316,6 +321,7 @@
         updatePlaces(event.latlng);
         addAllMarkers();
         map.setView(event.latlng, 15);
+        showSecondInstruction = true;
       }
     }
 
@@ -348,6 +354,17 @@
           <p>
             Find a perfect spot for start of SagoWalk and <b>double click</b> on
             it
+          </p>
+        </div>
+      </div>
+    {/if}
+    {#if showSecondInstruction}
+      <div class="mapCover" on:click={hideSecondInstruction}>
+        <div class="brightArea">
+          <div class="cross" />
+          <p>
+            Perfect! Now <b>move the parts of the Saga</b> along your desired
+            walk and <b>adjust the trail</b> between them to follow paths/roads
           </p>
         </div>
       </div>
