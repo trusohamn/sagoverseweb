@@ -19,12 +19,12 @@
     places = [
       {
         value: "intro1",
-        name: "Intro",
+        name: "1. Intro",
         location: { lat: lat, lng: lng },
       },
       {
         value: "drake2",
-        name: "Dragon",
+        name: "2. Dragon",
         location: {
           lat: lat + 0.0007495,
           lng: lng - 0.0031189,
@@ -32,7 +32,7 @@
       },
       {
         value: "troll3a",
-        name: "Troll",
+        name: "3. Troll",
         location: {
           lat: lat + 0.001848,
           lng: lng - 0.004985,
@@ -40,7 +40,7 @@
       },
       {
         value: "hyllemor4",
-        name: "Hyllemor",
+        name: "4. Hyllemor",
         location: {
           lat: lat + 0.003398,
           lng: lng - 0.004985,
@@ -48,7 +48,7 @@
       },
       {
         value: "prasslar5",
-        name: "Prasslar",
+        name: "5. Prasslar",
         location: {
           lat: lat + 0.004807,
           lng: lng - 0.004899,
@@ -56,7 +56,7 @@
       },
       {
         value: "jerff6",
-        name: "Jerff",
+        name: "6. Jerff",
         location: {
           lat: lat + 0.005685,
           lng: lng - 0.002131,
@@ -64,7 +64,7 @@
       },
       {
         value: "alv7",
-        name: "Elves",
+        name: "7. Elves",
         location: {
           lat: lat + 0.005815,
           lng: lng + 0.001344,
@@ -72,7 +72,7 @@
       },
       {
         value: "kor8",
-        name: "Cow",
+        name: "8. Cows",
         location: {
           lat: lat + 0.004807,
           lng: lng + 0.004434,
@@ -80,7 +80,7 @@
       },
       {
         value: "vittror9",
-        name: "Vittror",
+        name: "9. Vittror",
         location: {
           lat: lat + 0.00314,
           lng: lng + 0.00567,
@@ -88,7 +88,7 @@
       },
       {
         value: "haren10",
-        name: "Hare",
+        name: "10. Hare",
         location: {
           lat: lat + 0.00116,
           lng: lng + 0.00434,
@@ -96,7 +96,7 @@
       },
       {
         value: "mamma11",
-        name: "Mamma Dragon",
+        name: "11. Dragon Mom",
         location: {
           lat: lat + 0.00021,
           lng: lng + 0.00158,
