@@ -190,9 +190,7 @@
         }
         return place;
       });
-      vertexLayers.remove();
       cleanUp();
-      vertexLayers.addTo(map);
     });
     marker.on("dblclick", function (event) {
       const { id } = event.target.options;
@@ -203,9 +201,7 @@
         }
         return acc;
       }, []);
-      vertexLayers.remove();
       cleanUp();
-      vertexLayers.addTo(map);
     });
 
     return marker;
@@ -273,9 +269,7 @@
 
         places = places;
 
-        vertexLayers.remove();
         cleanUp();
-        vertexLayers.addTo(map);
       });
 
       midMarkersLayers.addLayer(midmarker);
@@ -285,6 +279,7 @@
   function cleanUp() {
     midMarkersLayers.remove();
     lineLayers.remove();
+    vertexLayers.remove();
 
     createMidMarkers();
     createLines();
@@ -293,6 +288,7 @@
 
     midMarkersLayers.addTo(map);
     lineLayers.addTo(map);
+    vertexLayers.addTo(map);
   }
   function addAllMarkers() {
     createMidMarkers();
