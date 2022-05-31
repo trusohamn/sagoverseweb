@@ -333,9 +333,32 @@
   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
   crossorigin=""
 />
-<div class="map" style="height:100%;width:100%" use:initMapAction />
+<container>
+  <div class="header"><h2>SagoWalk creator</h2></div>
+  <div class="map" use:initMapAction />
+</container>
 
 <style>
+  container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    background-color: #009d9d;
+    overflow: hidden;
+    flex-direction: column;
+  }
+
+  .header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+  .map {
+    height: 70%;
+    width: 100%;
+  }
   .map :global(.marker-text) {
     width: 100%;
     text-align: center;
