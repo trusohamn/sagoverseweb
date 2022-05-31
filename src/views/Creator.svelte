@@ -1,8 +1,8 @@
 <script>
   import L from "leaflet";
   let map;
-  const initialView = { lat: 52.968459819373585, lng: 18.321627974510196 };
-  const zoom = 16;
+  let initialView = { lat: 52.968459819373585, lng: 18.321627974510196 };
+  let initialZoom = 4;
 
   let places = [];
   function updatePlaces({ lat, lng }) {
@@ -96,7 +96,10 @@
   }
 
   function createMap(container) {
-    let m = L.map(container, { preferCanvas: true }).setView(initialView, zoom);
+    let m = L.map(container, { preferCanvas: true }).setView(
+      initialView,
+      initialZoom
+    );
     L.tileLayer(
       "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
       {
@@ -301,11 +304,13 @@
 
   function initMapAction(container) {
     map = createMap(container);
+    map.doubleClickZoom.disable();
 
     function getStigLocation(event) {
       if (!places.length) {
         updatePlaces(event.latlng);
         addAllMarkers();
+        map.setView(event.latlng, 15);
       }
     }
 
