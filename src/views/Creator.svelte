@@ -3,6 +3,11 @@
   let map;
   let initialView = { lat: 52.968459819373585, lng: 18.321627974510196 };
   let initialZoom = 4;
+  let showFirstInstruction = true;
+
+  function hideFirstInstruction() {
+    showFirstInstruction = false;
+  }
 
   let places = [];
   function updatePlaces({ lat, lng }) {
@@ -335,7 +340,19 @@
 />
 <container>
   <div class="header"><h2>SagoWalk creator</h2></div>
-  <div class="map" use:initMapAction />
+  <div class="map" use:initMapAction>
+    {#if showFirstInstruction}
+      <div class="mapCover" on:click={hideFirstInstruction}>
+        <div class="brightArea">
+          <div class="cross" />
+          <p>
+            Find a perfect spot for start of SagoWalk and <b>double click</b> on
+            it
+          </p>
+        </div>
+      </div>
+    {/if}
+  </div>
 </container>
 
 <style>
@@ -355,9 +372,41 @@
     align-items: center;
     margin-left: 20px;
   }
+
   .map {
     height: 70%;
     width: 100%;
+  }
+
+  p {
+    font-size: 1.5em;
+  }
+  .mapCover {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(59, 53, 58, 0.7);
+    z-index: 2000;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cross {
+    float: right;
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+  .cross::after {
+    font-size: 20px;
+    display: inline-block;
+    content: "\00d7"; /* This will render the 'X' */
+  }
+  .brightArea {
+    background-color: #eee;
+    width: 50%;
+    max-width: 200px;
+    padding: 20px;
+    border-radius: 10px;
   }
   .map :global(.marker-text) {
     width: 100%;
