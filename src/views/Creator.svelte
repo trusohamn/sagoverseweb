@@ -366,6 +366,12 @@
       </div>
     {/if}
   </div>
+  <div class="underMap">
+    <div class="message">
+      We are still developing this creator, but soon you will be able to submit
+      your walks to Sagoverse
+    </div>
+  </div>
 </container>
 
 <style>
@@ -384,6 +390,7 @@
     display: flex;
     align-items: center;
     margin-left: 20px;
+    color: white;
   }
 
   .map {
@@ -448,5 +455,19 @@
     border-radius: 15px;
     transform: translateX(-25%) translateY(-25%);
     box-shadow: inset 0px 0px 20px -10px #000000;
+  }
+  .underMap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .message {
+    max-width: 400px;
+    margin-top: 20px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    border-radius: 10px;
   }
 </style>
