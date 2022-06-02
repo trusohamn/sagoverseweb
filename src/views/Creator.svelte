@@ -457,10 +457,11 @@
     box-shadow: inset 0px 0px 20px -10px #000000;
   }
   .underMap {
-    width: 100%;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0px auto 30px auto;
   }
   .message {
     max-width: 400px;
