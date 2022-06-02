@@ -1,32 +1,74 @@
 <script>
-  let src = "/assets/sagoverse-banner.jpeg";
+  const banner = "/assets/sagoverse-banner.jpeg";
+  const photo1 = "/assets/sagoverse1.jpeg";
 </script>
 
 <container>
-  <div class="img-gradient">
-    <img {src} alt="Sagoverse banner" />
-  </div>
-  <buttonContainer>
-    <button
-      onclick="window.location.href='https://testflight.apple.com/join/0jOyrOUT'"
-      >Download test version for iOS</button
-    >
-    <button
-      onclick="window.location.href='https://play.google.com/store/apps/details?id=com.sagoverse'"
-      >Download test version for Android</button
-    >
-  </buttonContainer>
+  <headerContainer>
+    <div class="img-gradient">
+      <img src={banner} alt="Sagoverse banner" />
+    </div>
+    <buttonContainer>
+      <button
+        onclick="window.location.href='https://testflight.apple.com/join/0jOyrOUT'"
+        >Download test version for iOS</button
+      >
+      <button
+        onclick="window.location.href='https://play.google.com/store/apps/details?id=com.sagoverse'"
+        >Download test version for Android</button
+      >
+    </buttonContainer>
+  </headerContainer>
+  <div class="spacer" />
+  <section>
+    <h2>Take your kids for a walk with Sagas!</h2>
+    <div class="spacer" />
+    <img id="photo1" src={photo1} alt="Kid with Sagoverse app" />
+  </section>
+  <div class="spacer" />
 </container>
 
 <style>
-  container {
-    height: 100%;
-    width: 100%;
+  section {
+    background-color: rgba(192, 228, 217, 0.5);
+    margin: 10px;
+    padding-top: 10px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    max-width: 400px;
+    overflow: hidden;
+  }
+
+  h2 {
+    font-size: 1.3em;
+    text-align: center;
+    font-weight: 400;
+  }
+  #photo1 {
+    width: 100%;
+  }
+  container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     background-color: #009d9d;
     overflow: hidden;
+    flex-direction: column;
+  }
+
+  headerContainer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    flex-direction: column;
   }
   button {
     padding: 10px;
@@ -38,6 +80,7 @@
     background-color: rgba(192, 228, 217, 0.8);
     text-align: center;
     font-weight: 400;
+    font-size: 1.1em;
   }
   buttonContainer {
     position: absolute;
@@ -48,9 +91,7 @@
     top: 70%;
   }
   .img-gradient {
-    top: 0;
-    width: 100%;
-    height: 80%;
+    width: 1200px;
   }
 
   .img-gradient::after {
@@ -75,9 +116,13 @@
     width: 100%;
     object-fit: cover;
   }
-  @media (min-width: 640px) {
-    container {
-      max-width: none;
+
+  .spacer {
+    height: 30px;
+  }
+  @media (min-width: 1000px) {
+    .img-gradient {
+      width: 100vw;
     }
   }
 </style>
