@@ -1,6 +1,8 @@
 <script>
   const banner = "/assets/sagoverse-banner.jpeg";
   const photo1 = "/assets/sagoverse1.jpeg";
+  const sagostigar = "/assets/sagostigar.jpeg";
+  const exploration = "/assets/exploration.jpeg";
 </script>
 
 <container>
@@ -19,18 +21,32 @@
       >
     </buttonContainer>
   </headerContainer>
-  <div class="spacer" />
-  <section>
-    <h2>Take your kids for a walk with Sagas!</h2>
+  <rowColumnContainer>
     <div class="spacer" />
-    <img id="photo1" src={photo1} alt="Kid with Sagoverse app" />
-  </section>
+    <section>
+      <h2>Take your kids for a walk with Sagas!</h2>
+      <div class="spacer" />
+      <img class="photo" src={photo1} alt="Kid with Sagoverse app" />
+    </section>
+    <section>
+      <h2>Select from a variety of marked storytrails</h2>
+      <div class="spacer" />
+      <img class="photo" src={sagostigar} alt="Sagostigar" />
+    </section>
+    <section>
+      <h2>
+        But if there is no marked trails close to you, try the exploration mode
+      </h2>
+      <div class="spacer" />
+      <img class="photo" src={exploration} alt="Exploration mode" />
+    </section>
+  </rowColumnContainer>
   <div class="spacer" />
 </container>
 
 <style>
   section {
-    background-color: rgba(192, 228, 217, 0.5);
+    background-color: rgba(192, 228, 217, 0.8);
     margin: 10px;
     padding-top: 10px;
     border-radius: 10px;
@@ -41,14 +57,16 @@
     width: 80%;
     max-width: 400px;
     overflow: hidden;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
   }
 
   h2 {
     font-size: 1.3em;
     text-align: center;
     font-weight: 400;
+    min-height: 65px;
   }
-  #photo1 {
+  .photo {
     width: 100%;
   }
   container {
@@ -59,6 +77,15 @@
     background-color: #009d9d;
     overflow: hidden;
     flex-direction: column;
+  }
+
+  rowColumnContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   headerContainer {
@@ -81,6 +108,7 @@
     text-align: center;
     font-weight: 400;
     font-size: 1.1em;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
   }
   buttonContainer {
     position: absolute;
