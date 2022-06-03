@@ -108,7 +108,9 @@
     text-align: center;
     font-weight: 400;
     font-size: 1.1em;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+    border: none;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1),
+      inset 0px 0px 5px 2px rgb(255, 255, 255, 0.6);
   }
   buttonContainer {
     position: absolute;
