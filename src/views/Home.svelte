@@ -3,6 +3,10 @@
   const photo1 = "/assets/sagoverse1.jpeg";
   const sagostigar = "/assets/sagostigar.jpeg";
   const exploration = "/assets/exploration.jpeg";
+  const tomtestigen = "/assets/tomtestigen.png";
+  const bjornstigen = "/assets/bjornstigen.png";
+  const pl = "/assets/pl.png";
+  const sv = "/assets/sv.png";
 </script>
 
 <container>
@@ -23,29 +27,89 @@
   </headerContainer>
   <rowColumnContainer>
     <div class="spacer" />
-    <section>
-      <h2>Take your kids for a walk with Sagas!</h2>
-      <div class="spacer" />
+    <card>
+      <div class="cardText">
+        <h3>Take your kids for a walk with sagas!</h3>
+        <div class="spacer" />
+      </div>
       <img class="photo" src={photo1} alt="Kid with Sagoverse app" />
-    </section>
-    <section>
-      <h2>Select from a variety of marked storytrails</h2>
-      <div class="spacer" />
+    </card>
+    <card>
+      <div class="cardText">
+        <h3>Select from a variety of marked storytrails</h3>
+        <div class="spacer" />
+      </div>
       <img class="photo" src={sagostigar} alt="Sagostigar" />
-    </section>
-    <section>
-      <h2>
-        But if there is no marked trails close to you, try the exploration mode
-      </h2>
-      <div class="spacer" />
+    </card>
+    <card>
+      <div class="cardText">
+        <h3>
+          But if there is no marked trails close to you, try the exploration
+          mode
+        </h3>
+        <div class="spacer" />
+      </div>
       <img class="photo" src={exploration} alt="Exploration mode" />
-    </section>
+    </card>
   </rowColumnContainer>
+  <div class="spacer" />
+  <div class="spacer" />
+  <h2>Our sagas</h2>
+  <rowColumnContainer>
+    <card>
+      <div class="cardText">
+        <div class="flagContainer">
+          <img class="flag" src={sv} alt="Swedish flag" />
+          <h3>Tomtestigen</h3>
+        </div>
+
+        <div class="flagContainer">
+          <img class="flag" src={pl} alt="Swedish flag" />
+          <h3>Szlak krasnoludkowy</h3>
+        </div>
+        <p>
+          This is Sagoverse's very first story. The main character - a gnome,
+          finds a baby dragon that has lost its mom. Along the way they meet
+          plenty of helpful creatures from Nordic folklore. Will you help them
+          to find the dragon's mother before the evil bunny gets them?
+        </p>
+        <div class="spacer" />
+      </div>
+
+      <img class="photo" src={tomtestigen} alt="Sagostigar" />
+    </card>
+    <card>
+      <div class="cardText">
+        <div class="flagContainer">
+          <img class="flag" src={sv} alt="Swedish flag" />
+          <h3>Bjornstigen</h3>
+        </div>
+
+        <div class="flagContainer">
+          <img class="flag" src={pl} alt="Swedish flag" />
+          <h3>Szlak misiowy</h3>
+        </div>
+
+        <p>
+          Follow the magical, full of challanges path with Bear Lesio. <br />A
+          perfect saga for kids who need to burn some energy.
+        </p>
+        <div class="spacer" />
+      </div>
+      <img class="photo" src={bjornstigen} alt="Exploration mode" />
+    </card>
+  </rowColumnContainer>
+
   <div class="spacer" />
 </container>
 
 <style>
-  section {
+  .flag {
+    margin-right: 5px;
+    height: 20px;
+    width: 30px;
+  }
+  card {
     background-color: rgba(192, 228, 217, 0.8);
     margin: 10px;
     padding-top: 10px;
@@ -60,11 +124,17 @@
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
   }
 
-  h2 {
+  .cardText {
+    font-weight: 400;
+    padding: 7px;
+  }
+
+  h3 {
     font-size: 1.3em;
     text-align: center;
-    font-weight: 400;
-    min-height: 65px;
+  }
+  h2 {
+    font-size: 1.9em;
   }
   .photo {
     width: 100%;
@@ -81,6 +151,14 @@
 
   rowColumnContainer {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .flagContainer {
     display: flex;
     justify-content: center;
     align-items: center;
