@@ -82,7 +82,7 @@
       <div class="cardText">
         <div class="flagContainer">
           <img class="flag" src={sv} alt="Swedish flag" />
-          <h3>Bjornstigen</h3>
+          <h3>Björnstigen</h3>
         </div>
 
         <div class="flagContainer">
@@ -106,7 +106,6 @@
 <style>
   .flag {
     margin-right: 5px;
-    height: 20px;
     width: 30px;
   }
   card {
