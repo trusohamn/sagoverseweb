@@ -5,6 +5,7 @@
   let initialZoom = 4;
   let showFirstInstruction = true;
   let showSecondInstruction = false;
+  let length = 0;
 
   function hideFirstInstruction() {
     showFirstInstruction = false;
@@ -329,7 +330,39 @@
       },
     };
   }
+
+  function getDistanceInKm(origin, destination) {
+    const lon1 = toRadian(origin.lng),
+      lat1 = toRadian(origin.lat),
+      lon2 = toRadian(destination.lng),
+      lat2 = toRadian(destination.lat);
+
+    const deltaLat = lat2 - lat1;
+    const deltaLon = lon2 - lon1;
+
+    const a =
+      Math.pow(Math.sin(deltaLat / 2), 2) +
+      Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon / 2), 2);
+    const c = 2 * Math.asin(Math.sqrt(a));
+    const EARTH_RADIUS = 6371;
+    return c * EARTH_RADIUS;
+  }
+  function toRadian(degree) {
+    return (degree * Math.PI) / 180;
+  }
+
   $: console.log(JSON.stringify(places));
+  $: if (places) {
+    const totalDistance = places.reduce((acc, place, index, array) => {
+      const nextLocation = array[index + 1]?.location;
+      if (nextLocation) {
+        const distance = getDistanceInKm(place.location, nextLocation);
+        if (distance) acc = acc + distance;
+      }
+      return acc;
+    }, 0);
+    length = totalDistance.toFixed(2);
+  }
 </script>
 
 <svelte:window on:resize={resizeMap} />
@@ -364,6 +397,10 @@
           </p>
         </div>
       </div>
+    {/if}
+
+    {#if places.length}
+      <div class="brightArea rightTop">length: {length}km</div>
     {/if}
   </div>
   <div class="underMap">
@@ -428,6 +465,14 @@
     padding: 20px;
     border-radius: 10px;
   }
+  .rightTop {
+    width: 120px;
+    margin: 10px;
+    right: 0px;
+    z-index: 2000;
+    position: absolute;
+  }
+
   .map :global(.marker-text) {
     width: 100%;
     text-align: center;
