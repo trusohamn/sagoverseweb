@@ -1,13 +1,22 @@
 <script lang="ts">
   import L from "leaflet";
+  type Location = { lat: number; lng: number };
+  type Place = {
+    value?: string;
+    name?: string;
+    location: Location;
+    hint?: string;
+    id?: number;
+  };
+
   let map;
   let initialView = { lat: 52.968459819373585, lng: 18.321627974510196 };
   let initialZoom = 4;
   let showFirstInstruction = true;
   let showSecondInstruction = false;
-  let length = 0;
+  let length = "";
+  let places: Place[] = [];
 
-  type Location = { lat: number; lng: number };
   function hideFirstInstruction() {
     showFirstInstruction = false;
   }
@@ -16,13 +25,13 @@
     showSecondInstruction = false;
   }
 
-  let places = [];
   function updatePlaces({ lat, lng }: Location) {
     places = [
       {
         value: "intro1",
         name: "1. Intro",
         location: { lat: lat, lng: lng },
+        hint: "Start of the saga",
       },
       {
         value: "drake2",
@@ -39,6 +48,7 @@
           lat: lat + 0.001848,
           lng: lng - 0.004985,
         },
+        hint: "If possible, place Troll near a big stone",
       },
       {
         value: "hyllemor4",
@@ -47,6 +57,7 @@
           lat: lat + 0.003398,
           lng: lng - 0.004985,
         },
+        hint: "If possible, place Hyllemor by a tree",
       },
       {
         value: "prasslar5",
@@ -71,6 +82,7 @@
           lat: lat + 0.005815,
           lng: lng + 0.001344,
         },
+        hint: "If possible, place Elves on a meadow",
       },
       {
         value: "kor8",
@@ -87,6 +99,7 @@
           lat: lat + 0.00314,
           lng: lng + 0.00567,
         },
+        hint: "If possible, place Vittror in a place with plenty of sticks",
       },
       {
         value: "haren10",
@@ -103,6 +116,7 @@
           lat: lat + 0.00021,
           lng: lng + 0.00158,
         },
+        hint: "This point should be as close as possible to beginning od the trail",
       },
     ];
   }
@@ -156,7 +170,7 @@
       name: place.name,
     });
 
-    marker.bindPopup("<p>Can you see me?</p>");
+    marker.bindPopup(`<p>${place.hint ?? "no additional information"}</p>`);
 
     marker.on("drag", function (event) {
       const location = event.target.getLatLng();
@@ -194,6 +208,7 @@
       });
       cleanUp();
     });
+
     marker.on("dblclick", function (event) {
       const { id } = event.target.options;
 
@@ -263,9 +278,9 @@
       });
 
       midmarker.on("dragend", function (event) {
-        const latLng = event.target.getLatLng();
+        const latLng: Location = event.target.getLatLng();
         places.splice(event.target.options.after + 1, 0, {
-          location: [latLng.lat, latLng.lng],
+          location: latLng,
           id: Date.now(),
         });
 
