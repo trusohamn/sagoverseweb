@@ -12,10 +12,16 @@
   let map;
   let initialView = { lat: 52.968459819373585, lng: 18.321627974510196 };
   let initialZoom = 4;
-  let showFirstInstruction = true;
+  let showSagaList = true;
+  let showFirstInstruction = false;
   let showSecondInstruction = false;
   let length = "";
   let places: Place[] = [];
+  let saga = "tomtestigen";
+
+  function hideSagaList() {
+    showSagaList = false;
+  }
 
   function hideFirstInstruction() {
     showFirstInstruction = false;
@@ -26,7 +32,7 @@
   }
 
   function updatePlaces({ lat, lng }: Location) {
-    places = [
+    const tomteStigenPlaces = [
       {
         value: "intro1",
         name: "1. Intro",
@@ -119,6 +125,88 @@
         hint: "This point should be as close as possible to beginning od the trail",
       },
     ];
+    const bjornstigenPlaces = [
+      {
+        value: "bjorn_intro",
+        name: "1. Intro",
+        location: { lat: lat, lng: lng },
+        hint: "Start of the saga",
+      },
+      {
+        value: "bjorn_lars",
+        name: "2. Bear Lars",
+        location: {
+          lat: lat - 0.002,
+          lng,
+        },
+      },
+      {
+        value: "bjorn_stig_start",
+        name: "3. Start of Magic Trail",
+        location: {
+          lat: lat - 0.004,
+          lng,
+        },
+      },
+      {
+        value: "bjorn_back",
+        name: "4. River",
+        location: {
+          lat: lat - 0.006,
+          lng,
+        },
+      },
+      {
+        value: "bjorn_fjarilar",
+        name: "5. Butterflies",
+        location: {
+          lat: lat - 0.008,
+          lng,
+        },
+      },
+      {
+        value: "bjorn_ravin",
+        name: "6. Cliff",
+        location: {
+          lat: lat - 0.01,
+          lng,
+        },
+      },
+      {
+        value: "bjorn_andra_sidan",
+        name: "7. Cliff - other side",
+        location: {
+          lat: lat - 0.012,
+          lng,
+        },
+      },
+      {
+        value: "bjorn_simma",
+        name: "8. Lake",
+        location: {
+          lat: lat - 0.014,
+          lng,
+        },
+      },
+      {
+        value: "bjorn_korsbar",
+        name: "9. Cherries",
+        location: {
+          lat: lat - 0.016,
+          lng,
+        },
+      },
+      {
+        value: "bjorn_hyddan",
+        name: "10. Hut",
+        location: {
+          lat: lat - 0.018,
+          lng,
+        },
+      },
+    ];
+
+    places = saga === "tomtestigen" ? tomteStigenPlaces : bjornstigenPlaces;
   }
 
   function createMap(container) {
@@ -392,6 +480,28 @@
 <container>
   <div class="header"><h2>SagoWalk creator</h2></div>
   <div class="map" use:initMapAction>
+    {#if showSagaList}
+      <div class="mapCover">
+        <div class="brightArea">
+          <div class="cross" />
+          <p>For which saga would you like to create a trail?</p>
+          <button
+            on:click={() => {
+              hideSagaList();
+              showFirstInstruction = true;
+              saga = "tomtestigen";
+            }}>Tomtestigen</button
+          >
+          <button
+            on:click={() => {
+              hideSagaList();
+              showFirstInstruction = true;
+              saga = "bjornstigen";
+            }}>Björnstigen</button
+          >
+        </div>
+      </div>
+    {/if}
     {#if showFirstInstruction}
       <div class="mapCover" on:click={hideFirstInstruction}>
         <div class="brightArea">
