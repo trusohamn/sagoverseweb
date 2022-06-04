@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import L from "leaflet";
   let map;
   let initialView = { lat: 52.968459819373585, lng: 18.321627974510196 };
@@ -7,6 +7,7 @@
   let showSecondInstruction = false;
   let length = 0;
 
+  type Location = { lat: number; lng: number };
   function hideFirstInstruction() {
     showFirstInstruction = false;
   }
@@ -16,7 +17,7 @@
   }
 
   let places = [];
-  function updatePlaces({ lat, lng }) {
+  function updatePlaces({ lat, lng }: Location) {
     places = [
       {
         value: "intro1",
@@ -331,7 +332,7 @@
     };
   }
 
-  function getDistanceInKm(origin, destination) {
+  function getDistanceInKm(origin: Location, destination: Location) {
     const lon1 = toRadian(origin.lng),
       lat1 = toRadian(origin.lat),
       lon2 = toRadian(destination.lng),
