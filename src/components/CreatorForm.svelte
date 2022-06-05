@@ -1,33 +1,37 @@
-<script>
+<script lang="ts">
   import { fly, fade } from "svelte/transition";
   import Spacer from "../ui/Spacer.svelte";
+  import type { Place } from "../types";
+  import { service } from "../constants";
 
-  let hasError = false;
   let isSuccessVisible = false;
+  let isErrorVisible = false;
   let submitted = false;
 
   let description = "";
   let email = "";
+  export let places: Place[] = [];
 
-  const errMessage = "All the fields are mandatory";
+  async function handleSubmit(e) {
+    isSuccessVisible = false;
+    isErrorVisible = false;
+    const response = await fetch(`${service}/stigs`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, description, places }),
+    });
 
-  function handleSubmit(e) {
-    console.log("submit", e);
+    if (response.status === 200) isSuccessVisible = true;
+    else {
+      isErrorVisible = true;
+    }
   }
 </script>
 
 <h2>Send your sago trail</h2>
 <p>We will validate it and add to the app during nearest 48h!</p>
-<Spacer height="20" />
-{#if hasError == true}
-  <p class="error-alert">{errMessage}</p>
-  <Spacer height="10" />
-{:else if isSuccessVisible}
-  <p class="error-alert" transition:fade={{ duration: 150 }}>
-    Data updated successfully
-  </p>
-{/if}
-
 <div class="container">
   <form
     id="surveyForm"
@@ -59,6 +63,16 @@
       >Continue</button
     >
   </form>
+
+  <Spacer height="20" />
+  {#if isErrorVisible == true}
+    <p class="error-alert">Something went wrong</p>
+    <Spacer height="10" />
+  {:else if isSuccessVisible}
+    <p class="success-alert" transition:fade={{ duration: 150 }}>
+      We have received your request!
+    </p>
+  {/if}
 </div>
 
 <link
@@ -110,6 +124,14 @@
     padding: 6px;
     text-align: center;
     color: #c00;
+    border-radius: 3px;
+  }
+
+  .success-alert {
+    border: 1px solid rgb(9, 98, 56) !important;
+    padding: 6px;
+    text-align: center;
+    color: rgb(9, 98, 56);
     border-radius: 3px;
   }
 </style>

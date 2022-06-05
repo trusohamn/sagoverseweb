@@ -11,7 +11,7 @@
   <div class="header"><h2>Sago Trail creator</h2></div>
   <CreatorMap bind:places />
   <div class="underMap">
-    <CreatorForm />
+    <CreatorForm {places} />
   </div>
 </container>
 
