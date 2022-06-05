@@ -2,6 +2,7 @@
   import CreatorForm from "../components/CreatorForm.svelte";
   import CreatorMap from "../components/CreatorMap.svelte";
   import type { Place } from "../types";
+  import Spacer from "../ui/Spacer.svelte";
 
   let places: Place[];
   $: console.log(JSON.stringify(places));
@@ -11,6 +12,7 @@
   <div class="header"><h2>Sago Trail creator</h2></div>
   <div class="map">
     <CreatorMap bind:places />
+    <Spacer height="45" />
   </div>
   {#if places?.length}
     <div class="underMap">
@@ -38,7 +40,7 @@
     color: white;
   }
   .map {
-    height: 80vh;
+    height: 75vh;
     width: 100%;
   }
   .underMap {
