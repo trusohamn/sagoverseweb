@@ -9,15 +9,19 @@
 
 <container>
   <div class="header"><h2>Sago Trail creator</h2></div>
-  <CreatorMap bind:places />
-  <div class="underMap">
-    <CreatorForm {places} />
+  <div class="map">
+    <CreatorMap bind:places />
   </div>
+  {#if places?.length}
+    <div class="underMap">
+      <CreatorForm {places} />
+    </div>
+  {/if}
 </container>
 
 <style>
   container {
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -32,6 +36,10 @@
     align-items: center;
     margin-left: 20px;
     color: white;
+  }
+  .map {
+    height: 80vh;
+    width: 100%;
   }
   .underMap {
     width: 90%;
