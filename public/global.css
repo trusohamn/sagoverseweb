@@ -135,7 +135,11 @@ button {
     font-weight: 400;
     font-size: 1.1em;
     border: none;
-    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.6),
-      inset 0px 0px 7px 2px rgb(0, 97, 97, 0.6);
+    box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.3),
+      inset 0px 0px 3px 2px rgb(0, 97, 97, 0.3);
+  }
+
+  textarea {
+	resize: none;
   }
 

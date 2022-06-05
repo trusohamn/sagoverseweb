@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CreatorForm from "../components/CreatorForm.svelte";
   import CreatorMap from "../components/CreatorMap.svelte";
   import type { Place } from "../types";
 
@@ -7,13 +8,10 @@
 </script>
 
 <container>
-  <div class="header"><h2>SagoWalk creator</h2></div>
+  <div class="header"><h2>Sago Trail creator</h2></div>
   <CreatorMap bind:places />
   <div class="underMap">
-    <div class="message">
-      We are still developing this creator, but soon you will be able to submit
-      your walks to Sagoverse
-    </div>
+    <CreatorForm />
   </div>
 </container>
 
@@ -40,14 +38,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0px auto 30px auto;
-  }
-  .message {
-    max-width: 400px;
-    margin-top: 20px;
-    color: black;
+    flex-direction: column;
+    margin: 5px auto 30px auto;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 10px;
     border-radius: 10px;
+    max-width: 600px;
   }
 </style>
