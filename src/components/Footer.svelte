@@ -24,18 +24,4 @@
     height: 30px;
     width: 30px;
   }
-  button {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 5px;
-    appearance: button;
-    text-decoration: none;
-    color: initial;
-    background-color: rgba(192, 228, 217, 0.8);
-    text-align: center;
-    font-weight: 400;
-    border: none;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1),
-      inset 0px 0px 5px 2px rgb(255, 255, 255, 0.6);
-  }
 </style>
