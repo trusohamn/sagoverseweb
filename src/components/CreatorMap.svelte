@@ -358,7 +358,7 @@
         const latLng: Location = event.target.getLatLng();
         places.splice(event.target.options.after + 1, 0, {
           location: latLng,
-          id: Date.now(),
+          id: Date.now().toString(),
         });
 
         places = places;

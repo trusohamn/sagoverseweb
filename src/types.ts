@@ -4,5 +4,5 @@ export type Place = {
     name?: string;
     location: Location;
     hint?: string;
-    id?: number;
+    id?: string;
 };
