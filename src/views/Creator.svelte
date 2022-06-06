@@ -30,6 +30,7 @@
     background-color: #009d9d;
     overflow: hidden;
     flex-direction: column;
+    margin-bottom: 50px;
   }
 
   .header {
@@ -40,7 +41,7 @@
     color: white;
   }
   .map {
-    height: 75vh;
+    height: 70vh;
     width: 100%;
   }
   .underMap {
