@@ -7,14 +7,30 @@
   let isSuccessVisible = false;
   let isErrorVisible = false;
   let submitted = false;
+  let isErrorEmail = false;
 
   let description = "";
   let email = "";
   export let places: Place[] = [];
 
+  const validateEmail = (email: string) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   async function handleSubmit(e) {
     isSuccessVisible = false;
     isErrorVisible = false;
+    isErrorEmail = false;
+
+    email = email.toLowerCase();
+    if (!validateEmail(email)) {
+      isErrorEmail = true;
+      return;
+    }
     const response = await fetch(`${service}/stigs`, {
       method: "POST",
       headers: {
@@ -43,11 +59,15 @@
       <input
         type="text"
         class="form-control"
-        placeholder="email"
+        placeholder="your email"
         required
         bind:value={email}
       />
     </div>
+    {#if isErrorEmail}
+      <p class="error-alert">Check again if this is a valid email address</p>
+      <Spacer height="10" />
+    {/if}
 
     <div class="form-group">
       <textarea
