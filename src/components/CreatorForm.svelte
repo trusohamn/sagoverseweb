@@ -79,7 +79,7 @@
         rows="10"
       />
     </div>
-    <p>
+    <p class="smallText">
       by continuing you agree to our <Link to="/privacy-policy-web"
         >Privacy Policy</Link
       >
@@ -109,6 +109,10 @@
 <style>
   p {
     text-align: center;
+  }
+
+  .smallText {
+    font-size: 0.8em;
   }
   .container {
     max-width: 1200px;

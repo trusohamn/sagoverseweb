@@ -1,6 +1,7 @@
 <script lang="ts">
   import L from "leaflet";
   import type { Place, Location } from "../types";
+  import Spacer from "../ui/Spacer.svelte";
 
   export let places: Place[] = [];
   let map;
@@ -471,6 +472,7 @@
       <div class="brightArea">
         <div class="cross" />
         <p>For which saga would you like to create a trail?</p>
+
         <button
           on:click={() => {
             hideSagaList();
@@ -485,6 +487,10 @@
             saga = "bjornstigen";
           }}>Björnstigen</button
         >
+        <Spacer height="20" />
+        <p class="smallText">
+          Learn more about our sagas <a href="/#sagas">here</a>
+        </p>
       </div>
     </div>
   {/if}
@@ -523,6 +529,9 @@
 
   p {
     font-size: 1.5em;
+  }
+  .smallText {
+    font-size: 1em;
   }
   .mapCover {
     height: 100%;
