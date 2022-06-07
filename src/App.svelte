@@ -2,6 +2,7 @@
   import { Router, Route } from "svelte-navigator";
   import Home from "./views/Home.svelte";
   import PrivacyPolicy from "./views/PrivacyPolicy.svelte";
+  import PrivacyPolicyWeb from "./views/PrivacyPolicyWeb.svelte";
   import Terms from "./views/Terms.svelte";
   import Creator from "./views/Creator.svelte";
   import NotFound from "./views/NotFound.svelte";
@@ -20,6 +21,10 @@
 
     <Route path="privacy-policy">
       <PrivacyPolicy />
+    </Route>
+
+    <Route path="privacy-policy-web">
+      <PrivacyPolicyWeb />
     </Route>
 
     <Route path="creator">

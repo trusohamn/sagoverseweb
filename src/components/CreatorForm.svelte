@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Link } from "svelte-navigator";
   import { fly, fade } from "svelte/transition";
   import Spacer from "../ui/Spacer.svelte";
   import type { Place } from "../types";
@@ -78,7 +79,11 @@
         rows="10"
       />
     </div>
-
+    <p>
+      by continuing you agree to our <Link to="/privacy-policy-web"
+        >Privacy Policy</Link
+      >
+    </p>
     <button class="btn btn-full" on:click={() => (submitted = true)}
       >Continue</button
     >
