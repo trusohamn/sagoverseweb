@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Link } from "svelte-navigator";
   import { fly, fade } from "svelte/transition";
   import Spacer from "../ui/Spacer.svelte";
   import type { Place } from "../types";
@@ -80,8 +79,10 @@
       />
     </div>
     <p class="smallText">
-      by continuing you agree to our <Link to="/privacy-policy-web"
-        >Privacy Policy</Link
+      by continuing you agree to our <a
+        href="/privacy-policy-web"
+        target="_blank"
+        rel="noopener noreferrer">Privacy Policy</a
       >
     </p>
     <button class="btn btn-full" on:click={() => (submitted = true)}
