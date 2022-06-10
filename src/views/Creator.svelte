@@ -1,15 +1,20 @@
 <script lang="ts">
   import CreatorForm from "../components/CreatorForm.svelte";
   import CreatorMap from "../components/CreatorMap.svelte";
+  import DragonLinkHome from "../components/DragonLinkHome.svelte";
   import type { Place } from "../types";
-  import Spacer from "../ui/Spacer.svelte";
+  import SpacerWidth from "../ui/SpacerWidth.svelte";
 
   let places: Place[];
   $: console.log(JSON.stringify(places));
 </script>
 
 <container>
-  <div class="header"><h2>Sago Trail creator</h2></div>
+  <div class="header">
+    <DragonLinkHome />
+    <SpacerWidth width="10" />
+    <h2>Sago Trail creator</h2>
+  </div>
   <div class="map">
     <CreatorMap bind:places />
   </div>
