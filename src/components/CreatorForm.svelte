@@ -2,12 +2,15 @@
   import { fly, fade } from "svelte/transition";
   import Spacer from "../ui/Spacer.svelte";
   import type { Place } from "../types";
+  const dragon = "/assets/dragonIcon.png";
+
   import { service } from "../constants";
 
   let isSuccessVisible = false;
   let isErrorVisible = false;
   let submitted = false;
   let isErrorEmail = false;
+  let isLoading = false;
 
   let description = "";
   let email = "";
@@ -31,6 +34,8 @@
       isErrorEmail = true;
       return;
     }
+    isLoading = true;
+
     const response = await fetch(`${service}/stigs`, {
       method: "POST",
       headers: {
@@ -38,7 +43,7 @@
       },
       body: JSON.stringify({ email, description, places }),
     });
-
+    isLoading = false;
     if (response.status === 200) isSuccessVisible = true;
     else {
       isErrorVisible = true;
@@ -48,13 +53,9 @@
 
 <h2>Send your sago trail</h2>
 <p>We will validate it and add to the app during nearest 48h!</p>
+<Spacer height="15" />
 <div class="container">
-  <form
-    id="surveyForm"
-    class="mt-4"
-    class:submitted
-    on:submit|preventDefault={handleSubmit}
-  >
+  <form id="surveyForm" class:submitted on:submit|preventDefault={handleSubmit}>
     <div class="form-group">
       <input
         type="text"
@@ -85,17 +86,31 @@
         rel="noopener noreferrer">Privacy Policy</a
       >
     </p>
-    <button class="btn btn-full" on:click={() => (submitted = true)}
-      >Continue</button
+
+    <button
+      class="btn btn-full"
+      on:click={() => (submitted = true)}
+      disabled={isLoading}
     >
+      {#if isLoading}
+        <img
+          class="loader"
+          src={dragon}
+          alt="Loader"
+          in:fade={{ duration: 150 }}
+        />
+      {:else}
+        Continue
+      {/if}
+    </button>
   </form>
 
   <Spacer height="20" />
-  {#if isErrorVisible == true}
+  {#if isErrorVisible}
     <p class="error-alert">Something went wrong</p>
     <Spacer height="10" />
   {:else if isSuccessVisible}
-    <p class="success-alert" transition:fade={{ duration: 150 }}>
+    <p class="success-alert" in:fade={{ duration: 150 }}>
       We have received your request!
     </p>
   {/if}
@@ -112,6 +127,11 @@
     text-align: center;
   }
 
+  .loader {
+    height: 20px;
+    animation: rotation 2s infinite ease-in;
+  }
+
   .smallText {
     font-size: 0.8em;
   }
@@ -125,10 +145,18 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    max-width: 300px;
   }
 
   h2 {
     margin-top: 0;
+  }
+
+  .btn {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .form-group > *,
@@ -155,6 +183,7 @@
     text-align: center;
     color: #c00;
     border-radius: 3px;
+    width: 100%;
   }
 
   .success-alert {
@@ -163,5 +192,14 @@
     text-align: center;
     color: rgb(9, 98, 56);
     border-radius: 3px;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
   }
 </style>
