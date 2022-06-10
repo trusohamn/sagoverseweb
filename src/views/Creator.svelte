@@ -12,7 +12,6 @@
   <div class="header"><h2>Sago Trail creator</h2></div>
   <div class="map">
     <CreatorMap bind:places />
-    <Spacer height="45" />
   </div>
   {#if places?.length}
     <div class="underMap">
@@ -30,7 +29,7 @@
     background-color: #009d9d;
     overflow: hidden;
     flex-direction: column;
-    margin-bottom: 50px;
+    margin-bottom: -50px;
   }
 
   .header {
@@ -50,7 +49,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 5px auto 30px auto;
+    margin: 25px auto 80px auto;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 10px;
     border-radius: 10px;
