@@ -470,7 +470,6 @@
   {#if showSagaList}
     <div class="mapCover">
       <div class="brightArea">
-        <div class="cross" />
         <p>For which saga would you like to create a trail?</p>
 
         <button
