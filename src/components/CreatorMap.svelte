@@ -2,8 +2,11 @@
   import L from "leaflet";
   import type { Place, Location } from "../types";
   import Spacer from "../ui/Spacer.svelte";
+  import { onMount } from "svelte";
+  import initPlaces from "../places";
 
   export let places: Place[] = [];
+
   let map;
   let initialView = { lat: 52.968459819373585, lng: 18.321627974510196 };
   let initialZoom = 4;
@@ -12,6 +15,14 @@
   let showSecondInstruction = false;
   let length = "";
   let saga = "tomtestigen";
+
+  onMount(() => {
+    if (initPlaces?.length) {
+      places = initPlaces;
+      addAllMarkers();
+      hideSagaList();
+    }
+  });
 
   function hideSagaList() {
     showSagaList = false;
