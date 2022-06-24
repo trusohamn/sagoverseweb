@@ -5,6 +5,7 @@
   <button onclick="window.location.href='https://www.instagram.com/sagoverse/'">
     <img src="/assets/instagram.svg" alt="instagram" /></button
   >
+  <p class="white">© 2022 Sagoverse AB</p>
 </container>
 
 <style>
@@ -23,5 +24,9 @@
   img {
     height: 30px;
     width: 30px;
+  }
+
+  .white {
+    color: #f4f4f4;
   }
 </style>
