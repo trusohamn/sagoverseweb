@@ -1,4 +1,6 @@
 <script>
+  import Spacer from "../ui/Spacer.svelte";
+
   const banner = "/assets/sagoverse-banner.jpeg";
   const photo1 = "/assets/sagoverse1.jpeg";
   const sagostigar = "/assets/sagostigar.jpeg";
@@ -25,29 +27,41 @@
       >
     </buttonContainer>
   </headerContainer>
+
+  <div class="spacer" />
+
+  <div class="spacer" />
   <rowColumnContainer>
-    <div class="spacer" />
     <card>
       <div class="cardText">
         <h3>Take your kids for a walk with sagas!</h3>
-        <div class="spacer" />
+        <p>
+          Sagoverse is a storytelling app with Augumented Reality features for
+          the whole family. The app has two modes to choose from.
+        </p>
+        <Spacer height={48} />
       </div>
       <img class="photo" src={photo1} alt="Kid with Sagoverse app" />
     </card>
     <card>
       <div class="cardText">
-        <h3>Select from a variety of marked storytrails</h3>
-        <div class="spacer" />
+        <h3>Select one of the storytrails</h3>
+        <p>
+          Children need to follow the trail in order to discover the whole
+          story. You can send us proposal of a new trails as well!
+        </p>
+        <Spacer height={48} />
       </div>
       <img class="photo" src={sagostigar} alt="Sagostigar" />
     </card>
     <card>
       <div class="cardText">
-        <h3>
-          But if there is no marked trails close to you, try the exploration
-          mode
-        </h3>
-        <div class="spacer" />
+        <h3>Try the exploration mode</h3>
+        <p>
+          The exploration mode can be used anywhere you want- new parts of saga
+          will be unlocked along your walk. And if for any reason you don't want
+          to get out today, press the sofa button to enjoy sagas from your home.
+        </p>
       </div>
       <img class="photo" src={exploration} alt="Exploration mode" />
     </card>
