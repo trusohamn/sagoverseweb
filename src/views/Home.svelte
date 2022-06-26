@@ -7,6 +7,8 @@
   const exploration = "/assets/exploration.jpeg";
   const tomtestigen = "/assets/tomtestigen.png";
   const bjornstigen = "/assets/bjornstigen.png";
+  const founders = "/assets/founders.jpg";
+  const ps = "/assets/ps.jpg";
   const pl = "/assets/pl.png";
   const sv = "/assets/sv.png";
 </script>
@@ -114,6 +116,44 @@
     </card>
   </rowColumnContainer>
 
+  <div class="spacer" />
+  <h2 id="sagas">About us</h2>
+  <rowColumnContainer>
+    <card>
+      <div class="cardText">
+        <h3>Founders</h3>
+        <p>
+          We are a Polish-Swedish family living in Stockholm, passionate about
+          travels, cycling and Dungeons & Dragons. Sagoverse is our third
+          'baby', which we create when the other two are asleep. 😀 <br />
+          <b>Marta Trusohamn</b>
+          is a software developer, coding whenever and wherever she can. She obviously
+          takes care of everything related to our App. <br />
+          <b>Fredrik Trusohamn</b> has a background in archeology and makes use
+          of it as a host of
+          <a href="https://diggingupancientaliens.com/"
+            >Digging Up Ancient Aliens podcast</a
+          >. He records and engineers the stories and sounds for the Sagoverse.
+        </p>
+        <div class="spacer" />
+      </div>
+
+      <img class="photo" src={founders} alt="Sagostigar" />
+    </card>
+  </rowColumnContainer>
+
+  <h3>Contributors</h3>
+  <rowColumnContainer>
+    <card>
+      <div class="cardText">
+        <h4>Paulina Smolinska</h4>
+
+        <div class="spacer" />
+      </div>
+
+      <img class="photo" src={ps} alt="Sagostigar" />
+    </card>
+  </rowColumnContainer>
   <div class="spacer" />
 </container>
 
