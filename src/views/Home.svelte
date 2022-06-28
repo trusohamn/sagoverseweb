@@ -147,7 +147,22 @@
     <card>
       <div class="cardText">
         <h4>Paulina Smolinska</h4>
-
+        <p>
+          Happy mother of 2 active boys, travel lover & optimistic owner of the
+          <a href="https://youtube.com/channel/UCgdjbvw7RINj-RARx6nMhIgand"
+            >vlog</a
+          >
+          & blog <a href="https://www.okrokblizej.pl">www.okrokblizej.pl</a>,
+          established on the 7month's family trip around the Europe. Currently
+          living in Sweden, but feeling as the citizen of the world. With the
+          enthusiasm for change and smart living ahse is also the owner of
+          children friendly place made from containers
+          <a href="https://www.kazielnik.pl"> www.kazielnik.pl</a> and co-owner
+          of <a href="https://momocontainers.se">momocontainers.se</a>. She
+          strongly feels that reading and stories develop the children. And time
+          well spend is to move with your kids and let your family discover
+          little miracles of the world.
+        </p>
         <div class="spacer" />
       </div>
 
