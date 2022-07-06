@@ -11,6 +11,8 @@
   const ps = "/assets/ps.jpg";
   const pl = "/assets/pl.png";
   const sv = "/assets/sv.png";
+  const googlePlay = "assets/googlePlay.png";
+  const applePlay = "assets/appleStore.svg";
 </script>
 
 <container>
@@ -19,15 +21,31 @@
       <img src={banner} alt="Sagoverse banner" />
     </div>
     <buttonContainer>
-      <button
-        onclick="window.location.href='https://testflight.apple.com/join/0jOyrOUT'"
-        >Download test version for iOS</button
-      >
-      <button
+      <img
+        onclick="window.location.href='https://apps.apple.com/se/app/sagoverse/id1610944481'"
+        src={applePlay}
+        alt="apple play store"
+        style="width: 153px; margin: 14px; cursor: pointer"
+      />
+      <img
+        src={googlePlay}
         onclick="window.location.href='https://play.google.com/store/apps/details?id=com.sagoverse'"
-        >Download test version for Android</button
-      >
+        alt="google play store"
+        style="width: 200px; cursor: pointer"
+      />
     </buttonContainer>
+
+    <p style="margin: 20px; max-width: 700px">
+      * Sagoverse app is published only in Sweden and Poland at the moment. If
+      you are interested in downloading it in other country, please use the beta
+      testing versions for <a href="https://testflight.apple.com/join/0jOyrOUT"
+        >iOS</a
+      >
+      and
+      <a href="https://play.google.com/store/apps/details?id=com.sagoverse"
+        >Android</a
+      >
+    </p>
   </headerContainer>
 
   <div class="spacer" />
@@ -177,6 +195,7 @@
     margin-right: 5px;
     width: 30px;
   }
+
   card {
     background-color: rgba(192, 228, 217, 0.8);
     margin: 10px;
@@ -250,7 +269,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-    top: 70%;
+    top: 60%;
   }
   .img-gradient {
     width: 1200px;
