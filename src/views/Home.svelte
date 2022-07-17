@@ -21,24 +21,25 @@
       <img src={banner} alt="Sagoverse banner" />
     </div>
     <buttonContainer>
+      <a href="https://apps.apple.com/se/app/sagoverse/id1610944481">
       <img
-        onclick="window.location.href='https://apps.apple.com/se/app/sagoverse/id1610944481'"
         src={applePlay}
         alt="apple play store"
         style="width: 153px; margin: 14px; cursor: pointer"
       />
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.sagoverse">
       <img
         src={googlePlay}
-        onclick="window.location.href='https://play.google.com/store/apps/details?id=com.sagoverse'"
         alt="google play store"
         style="width: 200px; cursor: pointer"
       />
+      </a>
     </buttonContainer>
 
-    <p style="margin: 20px; max-width: 700px">
-      * Sagoverse app is published only in Sweden and Poland at the moment. If
-      you are interested in downloading it in other country, please use the beta
-      testing versions for <a href="https://testflight.apple.com/join/0jOyrOUT"
+    <p style="margin: 20px; max-width: 700px; font-size: 0.8em">
+      * If Sagoverse App is not available in your country, please use the beta
+      testing version for <a href="https://testflight.apple.com/join/0jOyrOUT"
         >iOS</a
       >
       and

@@ -1,10 +1,14 @@
 <container>
-  <button onclick="window.location.href='https://www.facebook.com/sagoverse'">
-    <img src="/assets/facebook.svg" alt="facebook" />
-  </button>
-  <button onclick="window.location.href='https://www.instagram.com/sagoverse/'">
-    <img src="/assets/instagram.svg" alt="instagram" /></button
-  >
+  <a href="https://www.facebook.com/sagoverse">
+    <button>
+      <img src="/assets/facebook.svg" alt="facebook" />
+    </button>
+  </a>
+  <a href="https://www.instagram.com/sagoverse/">
+    <button>
+      <img src="/assets/instagram.svg" alt="instagram" />
+    </button>
+  </a>
   <p class="white">© 2022 Sagoverse AB</p>
 </container>
 
