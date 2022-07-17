@@ -23,11 +23,7 @@
       <img src={sagoverse} alt="Sagoverse name" />
     </div>
     <div class="img-gradient">
-      <img
-        src={banner}
-        alt="Sagoverse banner"
-        style="background:url(/assets/sagoverse-banner-low-res.png) no-repeat; background-size: 1200px 676px;"
-      />
+      <img src={banner} alt="Sagoverse banner" class="img-banner" />
     </div>
     <buttonContainer>
       <a href="https://apps.apple.com/se/app/sagoverse/id1610944481">
@@ -314,9 +310,19 @@
     object-fit: cover;
   }
 
+  .img-banner {
+    background: url(/assets/sagoverse-banner-low-res.png) no-repeat;
+    background-size: 1200px 676px;
+  }
+
   @media (min-width: 1000px) {
     .img-gradient {
       width: 100vw;
+      height: auto;
+    }
+    .img-banner {
+      background: url(/assets/sagoverse-banner-low-res.png) no-repeat;
+      background-size: 100vw auto;
     }
   }
 </style>
