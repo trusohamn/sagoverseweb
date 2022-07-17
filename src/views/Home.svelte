@@ -1,7 +1,8 @@
 <script>
   import Spacer from "../ui/Spacer.svelte";
 
-  const banner = "/assets/sagoverse-banner.jpeg";
+  const banner = "/assets/sagoverse-banner.png";
+  const sagoverse = "/assets/sagoverse.png";
   const photo1 = "/assets/sagoverse1.jpeg";
   const sagostigar = "/assets/sagostigar.jpeg";
   const exploration = "/assets/exploration.jpeg";
@@ -17,23 +18,26 @@
 
 <container>
   <headerContainer>
+    <div class="header">
+      <img src={sagoverse} alt="Sagoverse name" />
+    </div>
     <div class="img-gradient">
       <img src={banner} alt="Sagoverse banner" />
     </div>
     <buttonContainer>
       <a href="https://apps.apple.com/se/app/sagoverse/id1610944481">
-      <img
-        src={applePlay}
-        alt="apple play store"
-        style="width: 153px; margin: 14px; cursor: pointer"
-      />
+        <img
+          src={applePlay}
+          alt="apple play store"
+          style="width: 153px; margin: 14px; cursor: pointer"
+        />
       </a>
       <a href="https://play.google.com/store/apps/details?id=com.sagoverse">
-      <img
-        src={googlePlay}
-        alt="google play store"
-        style="width: 200px; cursor: pointer"
-      />
+        <img
+          src={googlePlay}
+          alt="google play store"
+          style="width: 200px; cursor: pointer"
+        />
       </a>
     </buttonContainer>
 
@@ -48,10 +52,7 @@
       >
     </p>
   </headerContainer>
-
-  <div class="spacer" />
-
-  <div class="spacer" />
+  <Spacer height={15} />
   <rowColumnContainer>
     <card>
       <div class="cardText">
@@ -272,6 +273,14 @@
     width: 50%;
     top: 60%;
   }
+
+  .header {
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+  }
   .img-gradient {
     width: 1200px;
   }
@@ -299,9 +308,6 @@
     object-fit: cover;
   }
 
-  .spacer {
-    height: 30px;
-  }
   @media (min-width: 1000px) {
     .img-gradient {
       width: 100vw;
