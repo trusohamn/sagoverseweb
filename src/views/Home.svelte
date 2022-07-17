@@ -2,6 +2,7 @@
   import Spacer from "../ui/Spacer.svelte";
 
   const banner = "/assets/sagoverse-banner.png";
+  const bannerLowRes = "/assets/sagoverse-banner-low-res.png";
   const sagoverse = "/assets/sagoverse.png";
   const photo1 = "/assets/sagoverse1.jpeg";
   const sagostigar = "/assets/sagostigar.jpeg";
@@ -22,7 +23,11 @@
       <img src={sagoverse} alt="Sagoverse name" />
     </div>
     <div class="img-gradient">
-      <img src={banner} alt="Sagoverse banner" />
+      <img
+        src={banner}
+        alt="Sagoverse banner"
+        style="background:url(/assets/sagoverse-banner-low-res.png) no-repeat; background-size: 1200px 676px;"
+      />
     </div>
     <buttonContainer>
       <a href="https://apps.apple.com/se/app/sagoverse/id1610944481">
@@ -283,6 +288,7 @@
   }
   .img-gradient {
     width: 1200px;
+    height: 676px;
   }
 
   .img-gradient::after {
