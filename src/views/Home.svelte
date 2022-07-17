@@ -89,8 +89,7 @@
       <img class="photo" src={exploration} alt="Exploration mode" />
     </card>
   </rowColumnContainer>
-  <div class="spacer" />
-  <div class="spacer" />
+  <Spacer height={60} />
   <h2 id="sagas">Our sagas</h2>
   <rowColumnContainer>
     <card>
@@ -110,7 +109,7 @@
           plenty of helpful creatures from Nordic folklore. Will you help them
           to find the dragon's mother before the evil bunny gets them?
         </p>
-        <div class="spacer" />
+        <Spacer height={30} />
       </div>
 
       <img class="photo" src={tomtestigen} alt="Sagostigar" />
@@ -131,13 +130,13 @@
           Follow the magical, full of challanges path with Bear Lesio. <br />A
           perfect saga for kids who need to burn some energy.
         </p>
-        <div class="spacer" />
+        <Spacer height={30} />
       </div>
       <img class="photo" src={bjornstigen} alt="Exploration mode" />
     </card>
   </rowColumnContainer>
 
-  <div class="spacer" />
+  <Spacer height={30} />
   <h2 id="sagas">About us</h2>
   <rowColumnContainer>
     <card>
@@ -156,12 +155,13 @@
             >Digging Up Ancient Aliens podcast</a
           >. He records and engineers the stories and sounds for the Sagoverse.
         </p>
-        <div class="spacer" />
+        <Spacer height={30} />
       </div>
 
       <img class="photo" src={founders} alt="Sagostigar" />
     </card>
   </rowColumnContainer>
+  <Spacer height={30} />
 
   <h3>Contributors</h3>
   <rowColumnContainer>
@@ -184,13 +184,13 @@
           well spend is to move with your kids and let your family discover
           little miracles of the world.
         </p>
-        <div class="spacer" />
+        <Spacer height={30} />
       </div>
 
       <img class="photo" src={ps} alt="Sagostigar" />
     </card>
   </rowColumnContainer>
-  <div class="spacer" />
+  <Spacer height={30} />
 </container>
 
 <style>
