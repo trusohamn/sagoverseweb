@@ -21,6 +21,7 @@
   <headerContainer>
     <div class="header">
       <img src={sagoverse} alt="Sagoverse name" />
+      <h3>Take your kids for a fairytale walk!</h3>
     </div>
     <div class="img-gradient">
       <img src={banner} alt="Sagoverse banner" class="img-banner" />
@@ -54,18 +55,23 @@
     </p>
   </headerContainer>
   <Spacer height={15} />
+  <div class="bigContainer">
+    <div class="pitch">
+      <h2>Sagoverse is a storytelling app for the whole family</h2>
+      <Spacer height={20} />
+      <ul>
+        <li>Fairytales audio experience in Swedish and Polish</li>
+        <li>Interactive tasks</li>
+        <li>Augmented Reality</li>
+        <li>Orienteering for children</li>
+      </ul>
+    </div>
+    <Spacer height={48} />
+    <img class="photoBig" src={photo1} alt="Kid with Sagoverse app" />
+    <Spacer height={48} />
+  </div>
+
   <rowColumnContainer>
-    <card>
-      <div class="cardText">
-        <h3>Take your kids for a walk with sagas!</h3>
-        <p>
-          Sagoverse is a storytelling app with Augumented Reality features for
-          the whole family. The app has two modes to choose from.
-        </p>
-        <Spacer height={48} />
-      </div>
-      <img class="photo" src={photo1} alt="Kid with Sagoverse app" />
-    </card>
     <card>
       <div class="cardText">
         <h3>Select one of the storytrails</h3>
@@ -211,12 +217,12 @@
     width: 80%;
     max-width: 400px;
     overflow: hidden;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+    box-shadow: 0.5px 0.5px 2px 0px rgba(0, 0, 0, 1);
   }
 
   .cardText {
     font-weight: 400;
-    padding: 7px;
+    padding: 12px;
   }
 
   h3 {
@@ -228,6 +234,11 @@
   }
   .photo {
     width: 100%;
+  }
+
+  .photoBig {
+    width: 100%;
+    max-width: 700px;
   }
   container {
     width: 100%;
@@ -245,6 +256,15 @@
     justify-content: center;
     align-items: stretch;
     flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .bigContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     flex-wrap: wrap;
   }
 
@@ -282,6 +302,7 @@
     margin-right: auto;
     top: 0;
   }
+
   .img-gradient {
     width: 1200px;
     height: 676px;
@@ -314,6 +335,16 @@
     background: url(/assets/sagoverse-banner-low-res.png) no-repeat;
     background-size: 1200px 676px;
   }
+  .pitch {
+    margin: 0 25px;
+  }
+  .pitch > ul {
+    font-size: 1.3em;
+    font-weight: 500;
+  }
+  .pitch > h2 {
+    font-size: 1.4em;
+  }
 
   @media (min-width: 1000px) {
     .img-gradient {
@@ -323,6 +354,13 @@
     .img-banner {
       background: url(/assets/sagoverse-banner-low-res.png) no-repeat;
       background-size: 100vw auto;
+    }
+
+    .photoBig {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0.5px 0.5px 2px 0px rgba(0, 0, 0, 1);
     }
   }
 </style>
